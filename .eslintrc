@@ -1,0 +1,15 @@
+{
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "protractor": true,
+    "node": true,
+    "es6": true
+  },
+  "extends": ["airbnb" ],
+  "plugins": ["react"],
+  "globals": {
+    "window": false
+  },
+  "parser": "babel-eslint"
+}

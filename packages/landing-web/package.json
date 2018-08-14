@@ -1,0 +1,14 @@
+{
+  "name": "landing-web",
+  "version": "1.0.0",
+  "description": "This is the landing page",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node ./lib/server/server.js",
+    "start:dev": "cross-env NODE_ENV=development ENABLE_MOCK=true babel-node src/server/server.js"
+  },
+  "author": "noro",
+  "devDependencies": {
+    "utils-web": "*"
+  },
+  "license": "SEE LICENSE IN license"
+}
