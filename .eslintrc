@@ -6,8 +6,8 @@
     "node": true,
     "es6": true
   },
-  "extends": ["airbnb" ],
-  "plugins": ["react"],
+  "extends": ["airbnb", "eslint:recommended", "plugin:jasmine/recommended" ],
+  "plugins": ["react", "jasmine"],
   "globals": {
     "window": false
   },
