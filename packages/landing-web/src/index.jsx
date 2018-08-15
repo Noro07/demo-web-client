@@ -1,6 +1,6 @@
-import DemoApp from './container/App';
-import './resources/sass/demo.scss';
-import demo from './reducers/index';
+import LandingApp from './containers/App';
+import './resources/sass/landing.scss';
+import landing from './reducers/index';
 
-export default DemoApp;
-export { demo };
+export default LandingApp;
+export { landing };

@@ -10,7 +10,7 @@ webpackDevConfig.plugins.push(
 );
 
 webpackDevConfig.entry.main.push(
-  'webpack-hot-moddleware/client?reload=true',
+  'webpack-hot-middleware/client?reload=true',
 );
 
 module.exports = webpackDevConfig;

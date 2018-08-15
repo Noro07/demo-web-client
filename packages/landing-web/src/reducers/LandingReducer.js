@@ -1,10 +1,10 @@
 import * as ACTION_TYPE from '../constants/ActionType';
 
-export const DEMO_INITSTATE = {
-  user: '',
+export const LANDING_INITSTATE = {
+  user: 'default user',
 };
 
-const demo = (state = DEMO_INITSTATE, action) => {
+const landing = (state = LANDING_INITSTATE, action) => {
   switch (action.type) {
     case ACTION_TYPE.LOAD_USER:
       return {
@@ -16,4 +16,4 @@ const demo = (state = DEMO_INITSTATE, action) => {
   }
 };
 
-export default demo;
+export default landing;

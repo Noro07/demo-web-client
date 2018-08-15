@@ -1,3 +1,3 @@
-import demo from './DemoReducer';
+import landing from './LandingReducer';
 
-export default { demo };
+export default { landing };
