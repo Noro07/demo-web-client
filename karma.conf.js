@@ -26,7 +26,7 @@ const baseKarmaConf = (overrides) => {
     // list of files / patterns to load in the browser
     files: [
       'node_module/babel-polyfill/dist/polyfill.js',
-      'test/unit/index.js',
+      'tests/unit/index.js',
     ],
 
 
@@ -36,12 +36,14 @@ const baseKarmaConf = (overrides) => {
 
     plugins: [
       'karma-chrome-launcher',
-      'karma-coverage-istanbul-reporter',
       'karma-jasmine',
       'karma-webpack',
+      'karma-sourcemap-loader',
+      'karma-coverage',
+      'karma-coverage-istanbul-reporter',
       'karma-spec-reporter',
-      // 'karma-html-reporter',
-      // 'karma-junit-reporter',
+      'karma-html-reporter',
+      'karma-junit-reporter',
     ],
 
     // preprocess matching files before serving them to the browser
@@ -54,12 +56,11 @@ const baseKarmaConf = (overrides) => {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    // reporters: ['spec', 'junit', 'html', 'coverage-istanbul'],
-    reporters: ['coverage-istanbul'],
+    reporters: ['spec', 'junit', 'html', 'coverage-istanbul'],
 
     coverageIstanbulReporter: {
       reports: ['html'],
-      fixWebpackSourcePahts: true,
+      fixWebpackSourcePaths: true,
       dir: 'tests/out/coverage/',
       'report-config': {
         html: {
@@ -67,28 +68,29 @@ const baseKarmaConf = (overrides) => {
         },
       },
       thresholds: {
-        emitWaening: false,
+        emitWarning: false,
         global: {
           statements: 90,
-          line: 90,
+          lines: 90,
           branches: 90,
-          function: 90,
+          functions: 90,
         },
       },
+      verbose: false, // output config used by istanbul for debugging
     },
 
-    // htmlReporter: {
-    //   outputDir: 'tests/out/unit',
-    //   reportName: 'htmlReporter',
-    //   namedFile: true,
-    //   urlFriendlyName: true,
-    // },
+    htmlReporter: {
+      outputDir: 'tests/out/unit',
+      reportName: 'htmlReporter',
+      namedFile: true,
+      urlFriendlyName: true,
+    },
 
-    // junitReporter: {
-    //   outputDir: 'tests/out/unit',
-    //   useBrowserName: false,
-    //   outputFile: 'junitReport.xml',
-    // },
+    junitReporter: {
+      outputDir: 'tests/out/unit',
+      useBrowserName: false,
+      outputFile: 'junitReport.xml',
+    },
 
     webpackMiddleware: {
       noInfo: true,
@@ -96,6 +98,7 @@ const baseKarmaConf = (overrides) => {
         colors: true,
         chunks: false,
         hash: false,
+        modules: false,
       },
     },
     // web server port
@@ -113,12 +116,12 @@ const baseKarmaConf = (overrides) => {
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
+    browsers: ['ChromeHeadless'],
 
 
     // Continuous Integration mode
@@ -130,19 +133,40 @@ const baseKarmaConf = (overrides) => {
     concurrency: Infinity,
 
     webpack: {
-      devtool: 'eval',
+      mode: 'development',
+      devtool: 'inline-source-map',
       module: {
         rules: [{
           test: /\.jsx?$/,
+          use: [{
+            loader: 'babel-loader',
+            options: {
+              "plugins": [
+                ["istanbul", {
+                  "include": [
+                    "**/src/**"
+                  ]
+                }]
+              ]
+            },
+          }],
           exclude: /node_modules/,
         }, {
           test: /\.scss$/,
-          loaders: ['style-loader', 'css-loader', 'sass-loader']
+          use: ['style-loader', 'css-loader', 'sass-loader']
         }, {
           test: /\.css$/,
-          loaders: ['style-loader', 'css-loader']
+          use: ['style-loader', 'css-loader']
         }].concat(rules)
       },
+      resolve: {
+        extensions: ['.js', '.jsx', '.scss'],
+      },
+      externals: {
+        'react/addons': true,
+        'react/lib/ExecutionEnvironment': true,
+        'react/lib/ReactContext': true,
+      }
     },
   };
   
