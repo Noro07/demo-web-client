@@ -9,9 +9,6 @@ addons:
       - google-chrome-stable
 install:
   - npm run link-packages
-before_script:
-  - npm run start:dev
-  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost:3000
 script:
   - npm run test
   - npm run test:e2e
