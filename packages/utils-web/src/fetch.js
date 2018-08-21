@@ -14,5 +14,5 @@ const fetchXML = () => {};
 
 export {
   fetchJSON,
-  fetchXML,
+  fetchXML
 };

@@ -3,7 +3,7 @@ import * as ACTION_TYPE from '../constants/ActionType';
 
 export const loadUser = user => ({
   type: ACTION_TYPE.LOAD_USER,
-  data: user,
+  data: user
 });
 
 export const fetchUser = () => (dispatch) => {

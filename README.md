@@ -3,7 +3,7 @@
 This is a demo for developing an web client for all skills
 Monorepo that contains React and Redux. Built with Webpack. The project is served on Node JS Express server. Managed by Lerna.
 
-## Set up 
+## Set up
 Install all dependencies:
 > npm run link-packages
 
