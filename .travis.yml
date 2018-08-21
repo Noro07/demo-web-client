@@ -1,13 +1,9 @@
+sudo: required
 language: node_js
 node_js:
-  - "iojs"
   - "8"
 addons:
-apt:
-  sources:
-    - google-chrome
-  packages:
-    - google-chrome-stable
+  chrome: stable
 install:
   - npm run link-packages
 script:
