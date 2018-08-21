@@ -17,7 +17,7 @@ exports.config = {
   capabilities: {
     browserName: 'chrome',
     chromeOptions: {
-      args: [ "--disable-gpu", "disable-infobars", "--window-size=1680,1050" ]
+      args: [ "--disable-gpu", "--no-sandbox", "disable-infobars", "--window-size=1680,1050" ]
     }
   },
 }
