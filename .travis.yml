@@ -12,6 +12,7 @@ addons:
 before_script:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+  - npm run start:dev &
 install:
   - npm run link-packages
 script:
