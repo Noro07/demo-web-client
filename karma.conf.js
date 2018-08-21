@@ -23,7 +23,7 @@ const baseKarmaConf = (overrides) => {
 
     // list of files / patterns to load in the browser
     files: [
-      'node_module/babel-polyfill/dist/polyfill.js',
+      // 'node_module/babel-polyfill/dist/polyfill.js',
       'tests/unit/index.js'
     ],
 
