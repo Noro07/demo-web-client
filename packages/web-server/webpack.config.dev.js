@@ -6,11 +6,11 @@ const webpackDevConfig = baseConfig;
 webpackDevConfig.devtool = 'cheap-module-eval-srouce-map';
 
 webpackDevConfig.plugins.push(
-  new webpack.HotModuleReplacementPlugin(),
+  new webpack.HotModuleReplacementPlugin()
 );
 
 webpackDevConfig.entry.main.push(
-  'webpack-hot-middleware/client?reload=true',
+  'webpack-hot-middleware/client?reload=true'
 );
 
 module.exports = webpackDevConfig;
