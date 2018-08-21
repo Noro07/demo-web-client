@@ -6,14 +6,16 @@
     "node": true,
     "es6": true
   },
-  "extends": ["airbnb", "eslint:recommended", "plugin:jasmine/recommended" ],
+  "extends": ["airbnb", "eslint:recommended", "plugin:jasmine/recommended", "standard" ],
   "plugins": ["react", "jasmine"],
   "globals": {
     "window": false
   },
   "rules": {
     "import/no-extraneous-dependencies": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"]}]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"]}],
+    "space-before-function-paren": ["error", "never"],
+    "semi": [2, "always"]
   },
   "parser": "babel-eslint"
 }

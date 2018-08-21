@@ -7,7 +7,7 @@ const { rules } = require('./config/webpack.loaders');
 
 const baseKarmaConf = (overrides) => {
   const customizer = (objValue, srcValue) => {
-    if(_.isArray(objValue)) {
+    if (_.isArray(objValue)) {
       return objValue.concat(srcValue);
     }
     return srcValue;
@@ -17,18 +17,15 @@ const baseKarmaConf = (overrides) => {
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: './',
 
-
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
 
-
     // list of files / patterns to load in the browser
     files: [
       'node_module/babel-polyfill/dist/polyfill.js',
-      'tests/unit/index.js',
+      'tests/unit/index.js'
     ],
-
 
     // list of files / patterns to exclude
     exclude: [
@@ -43,15 +40,14 @@ const baseKarmaConf = (overrides) => {
       'karma-coverage-istanbul-reporter',
       'karma-spec-reporter',
       'karma-html-reporter',
-      'karma-junit-reporter',
+      'karma-junit-reporter'
     ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'tests/unit/index.js': ['webpack', 'sourcemap'],
+      'tests/unit/index.js': ['webpack', 'sourcemap']
     },
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
@@ -64,8 +60,8 @@ const baseKarmaConf = (overrides) => {
       dir: 'tests/out/coverage/',
       'report-config': {
         html: {
-          subdir: 'html',
-        },
+          subdir: 'html'
+        }
       },
       thresholds: {
         emitWarning: false,
@@ -73,23 +69,23 @@ const baseKarmaConf = (overrides) => {
           statements: 90,
           lines: 90,
           branches: 90,
-          functions: 90,
-        },
+          functions: 90
+        }
       },
-      verbose: false, // output config used by istanbul for debugging
+      verbose: false // output config used by istanbul for debugging
     },
 
     htmlReporter: {
       outputDir: 'tests/out/unit',
       reportName: 'htmlReporter',
       namedFile: true,
-      urlFriendlyName: true,
+      urlFriendlyName: true
     },
 
     junitReporter: {
       outputDir: 'tests/out/unit',
       useBrowserName: false,
-      outputFile: 'junitReport.xml',
+      outputFile: 'junitReport.xml'
     },
 
     webpackMiddleware: {
@@ -98,31 +94,26 @@ const baseKarmaConf = (overrides) => {
         colors: true,
         chunks: false,
         hash: false,
-        modules: false,
-      },
+        modules: false
+      }
     },
     // web server port
     port: 9876,
 
-
     // enable / disable colors in the output (reporters and logs)
     colors: true,
-
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
     // eslint-disable-next-line
     // logLevel: LOG_INFO,
 
-
     // enable / disable watching file and executing tests whenever any file changes
     autoWatch: true,
-
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['ChromeHeadless'],
-
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
@@ -141,16 +132,16 @@ const baseKarmaConf = (overrides) => {
           use: [{
             loader: 'babel-loader',
             options: {
-              "plugins": [
-                ["istanbul", {
-                  "include": [
-                    "**/src/**"
+              'plugins': [
+                ['istanbul', {
+                  'include': [
+                    '**/src/**'
                   ]
                 }]
               ]
-            },
+            }
           }],
-          exclude: /node_modules/,
+          exclude: /node_modules/
         }, {
           test: /\.scss$/,
           use: ['style-loader', 'css-loader', 'sass-loader']
@@ -160,16 +151,16 @@ const baseKarmaConf = (overrides) => {
         }].concat(rules)
       },
       resolve: {
-        extensions: ['.js', '.jsx', '.scss'],
+        extensions: ['.js', '.jsx', '.scss']
       },
       externals: {
         'react/addons': true,
         'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': true,
+        'react/lib/ReactContext': true
       }
-    },
+    }
   };
-  
+
   if (overrides) {
     return _.mergeWith(baseConf, overrides, customizer);
   }

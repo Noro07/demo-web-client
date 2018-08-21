@@ -25,12 +25,12 @@ if (process.env.NODE_ENV === 'development') {
       hash: false,
       modules: false,
       reasons: false,
-      warnings: false,
+      warnings: false
     },
-    publicPath: Routes.SERVER_URL_LIB, // same as 'output.publishPath' in most case
+    publicPath: Routes.SERVER_URL_LIB // same as 'output.publishPath' in most case
   }));
   app.use(webpackHotMiddleware(compiler, {
-    log: false,
+    log: false
   }));
 }
 

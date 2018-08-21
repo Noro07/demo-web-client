@@ -27,21 +27,21 @@ export class App extends PureComponent {
 
 App.propTypes = {
   user: PropTypes.string,
-  loadUser: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired
 };
 
 App.defaultProps = {
-  user: 'default user 1',
+  user: 'default user 1'
 };
 
 const mapStateToProps = state => ({
-  user: state.landing.user,
+  user: state.landing.user
 });
 
 const mapDispatchToProps = dispatch => ({
   loadUser(state) {
     dispatch(fetchUser(state));
-  },
+  }
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

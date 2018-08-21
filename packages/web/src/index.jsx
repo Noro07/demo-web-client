@@ -21,5 +21,5 @@ ReactDOM.render(
       <APP />
     </Provider>
   </HashRouter>,
-  document.getElementById('content'),
+  document.getElementById('content')
 );

@@ -4,8 +4,8 @@ import { landing } from 'landing-web';
 
 const storeFactory = () => applyMiddleware(thunk)(createStore)(
   combineReducers(
-    Object.assign(landing),
-  ),
+    Object.assign(landing)
+  )
 );
 
 export default storeFactory;
