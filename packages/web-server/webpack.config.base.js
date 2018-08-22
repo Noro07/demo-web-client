@@ -3,37 +3,36 @@ const postcssPresentEnv = require('postcss-preset-env');
 const cssnano = require('cssnano');
 const path = require('path');
 const postcssImport = require('postcss-import');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 // const packagesDir = path.resolve(__dirname, '../../', 'packages');
 const devModal = process.env.NODE_ENV === 'development';
 
-const baseSassLoader = [{
-  loader: 'css-loader'
-}, {
-  loader: 'postcss-loader',
-  option: {
-    plugin: () => [
-      postcssPresentEnv({
-        browsers: ['last 2 versions']
-      }),
-      cssnano(),
-      postcssImport()
-    ]
+const sassLoaderPro = [
+  MiniCssExtractPlugin.loader,
+  {
+    loader: 'css-loader'
+  }, {
+    loader: 'postcss-loader',
+    options: {
+      ident: 'postcss',
+      plugins: () => [
+        postcssPresentEnv({
+          browsers: ['last 2 versions']
+        }),
+        cssnano(),
+        postcssImport()
+      ]
+    }
+  }, {
+    loader: 'sass-loader',
+    options: {
+      outputStyle: 'collapsed'
+      // includePaths: [path.resolve(__dirname, '../..', 'node_module')],
+    }
   }
-}, {
-  loader: 'sass-loader',
-  options: {
-    outputStyle: 'collapsed'
-    // includePaths: [path.resolve(__dirname, '../..', 'node_module')],
-  }
-}];
-
-const sassLoaderPro = ExtractTextPlugin.extract({
-  fallback: 'style-loader',
-  use: baseSassLoader
-});
+];
 
 const sassLoaderDev = [{
   loader: 'style-loader'
@@ -107,6 +106,18 @@ module.exports = {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
           chunks: 'all'
+
+        // comment the following style
+        // it looks like the miniextract should work first and get a css file with [name].css
+        // then the cacheGroup create a new css file by following codes called styles.css
+        // don't know whether should use the following css
+        //  <script src={`${SERVER_URL_LIB}/styles.Bundle.js`} />
+        // },
+        // styles: {
+        //   name: 'styles',
+        //   test: /\.(scss|css)$/,
+        //   chunks: 'all',
+        //   enforce: true
         }
       }
     }
@@ -117,10 +128,8 @@ module.exports = {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     }),
-    new ExtractTextPlugin({
-      allChunks: false,
-      filename: '[name].css',
-      disable: devModal
+    new MiniCssExtractPlugin({
+      filename: devModal ? '[name].[hash].css' : '[name].css'
     }),
     // new StyleLintPlugin({
     //   context: packagesDir,
@@ -135,5 +144,13 @@ module.exports = {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV)
       }
     })
-  ]
+  ],
+  stats: {
+    colors: true,
+    chunks: false, // redueces the amount of stuff in termianl
+    hash: false,
+    modules: false,
+    reasons: false,
+    warnings: false
+  }
 };
