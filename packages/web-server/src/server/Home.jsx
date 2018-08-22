@@ -4,7 +4,7 @@ import { SERVER_URL_LIB } from '../config/routes';
 const Home = language => (
   <html lang={language.lang}>
     <head>
-      <link rel="stylesheet" type="type/css" href={`${SERVER_URL_LIB}/main.css`} />
+      <link rel="stylesheet" type="text/css" href={`${SERVER_URL_LIB}/main.css`} />
       <meta charSet="utf-8" />
       <title>
         Demo web
