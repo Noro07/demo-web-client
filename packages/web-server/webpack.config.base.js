@@ -151,6 +151,7 @@ module.exports = {
     hash: false,
     modules: false,
     reasons: false,
-    warnings: false
+    warnings: false,
+    children: false
   }
 };
