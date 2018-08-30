@@ -21,12 +21,6 @@ script:
 cache:
   directories:
     - node_modules
-notifications:
-  email: 
-    recipients:
-      - uniform328@gmail.com
-    on_success: never
-    on_failure: always
 branches:
   only:
     - master
