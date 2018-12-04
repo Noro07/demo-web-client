@@ -13,7 +13,7 @@ Install all dependencies:
 Dev mode enables webpack-dev-middleware, will cause Webpack to compile files in-memory - code changes are saved and updated
 
 1. `npm run start:dev` to start web server.
-2. Go to browser and hit http://localhost:3000/people to launch.
+2. Go to browser and hit http://localhost:3000/test/#/ to launch.
 
 ## Unit tests
 All cases are written in Jasmine, executing via Karma on Chrome Headless. Code coverage is run by istanbul.
